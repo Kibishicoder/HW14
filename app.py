@@ -141,9 +141,7 @@ def main():
             })
         return response_json
 
-    print(get_the_film(film_type='Movie', release_year=2016, genre='Dramas'))
-
-    app.run(debug=True)
+    app.run()
 
 
 if __name__ == '__main':
