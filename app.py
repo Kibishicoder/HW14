@@ -24,7 +24,7 @@ def main():
                 , release_year
                 , listed_in AS genre
                 , description
-            FROM netflix-2
+            FROM netflix
             WHERE title = '{title}'
             ORDER BY release_year DESC 
             LIMIT 1
@@ -144,5 +144,5 @@ def main():
     app.run()
 
 
-if __name__ == '__main':
+if __name__ == '__main__':
     main()
