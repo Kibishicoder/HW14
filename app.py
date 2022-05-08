@@ -26,6 +26,7 @@ def main():
                 , description
             FROM netflix
             WHERE title = '{title}'
+            AND title IS NOT NULL
             ORDER BY release_year DESC 
             LIMIT 1
         """
@@ -83,7 +84,7 @@ def main():
                 'rating': film[1],
                 'description': film[2].strip()
             })
-            return jsonify(response_json)
+        return jsonify(response_json)
 
     @app.route('/genre/<genre>')
     def search_by_genre(genre):
