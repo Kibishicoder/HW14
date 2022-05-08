@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 import sqlite3
 
 
+
 def main():
     app = Flask(__name__)
     app.config['JSON_AS_ASCII'] = False
@@ -30,14 +31,17 @@ def main():
             ORDER BY release_year DESC 
             LIMIT 1
         """
-        response = db_connect(query)[0]
-        response_json = {
-            'title': response[0],
-            'country': response[1],
-            'release_year': response[2],
-            'genre': response[3],
-            'description': response[4].strip()
-        }
+        response = db_connect(query)
+        if len(response) == 0:
+            response_json = {}
+        else:
+            response_json = {
+                'title': response[0][0],
+                'country': response[0][1],
+                'release_year': response[0][2],
+                'genre': response[0][3],
+                'description': response[0][4].strip()
+            }
         return jsonify(response_json)
 
     @app.route('/movie/<int:start>/to/<int:end>')
